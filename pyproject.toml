@@ -1,0 +1,69 @@
+[tool.black]
+line-length = 240
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llava"
+version = "1.7.0.dev0"
+description = "LLaVA OneVision: The Next Generation of LLaVA with Better Image and Video Understanding Capabilities"
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+]
+
+# 为避免 editable install 时覆盖当前已验证可用的实验环境，
+# 这里不再通过 pyproject.toml 管理复杂运行依赖。
+# 实际依赖统一由 requirements.txt 和 install.sh 管理。
+dependencies = []
+
+[project.optional-dependencies]
+standalone = [
+    "shortuuid",
+    "einops",
+    "ftfy",
+    "httpx",
+]
+
+[project.urls]
+Homepage = "https://llava-vl.github.io"
+"Bug Tracker" = "https://github.com/haotian-liu/LLaVA/issues"
+
+[tool.setuptools.packages.find]
+include = ["llava*", "trl*"]
+exclude = [
+    "assets*",
+    "benchmark*",
+    "docs",
+    "dist*",
+    "playground*",
+    "scripts*",
+    "tests*",
+    "checkpoints*",
+    "project_checkpoints*",
+    "debug_checkpoints*",
+    "mlx_configs*",
+    "wandb*",
+    "notebooks*",
+]
+
+[tool.wheel]
+exclude = [
+    "assets*",
+    "benchmark*",
+    "docs",
+    "dist*",
+    "playground*",
+    "scripts*",
+    "tests*",
+    "checkpoints*",
+    "project_checkpoints*",
+    "debug_checkpoints*",
+    "mlx_configs*",
+    "wandb*",
+    "notebooks*",
+]
